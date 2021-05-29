@@ -1,0 +1,4 @@
+certbot_email: mail@deworker.pro
+certbot_hosts:
+    - qfind.site
+    - api.qfind.site

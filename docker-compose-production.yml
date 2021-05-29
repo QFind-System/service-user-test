@@ -1,7 +1,7 @@
 version: "3.3"
 services:
     gateway:
-        image: ${REGISTRY}/qfind-gateway:${IMAGE_TAG}
+        image: ${REGISTRY}/service-user-test-gateway:${IMAGE_TAG}
         restart: always
         volumes:
             - /etc/letsencrypt:/etc/letsencrypt:ro
@@ -14,15 +14,18 @@ services:
             - api
 
     frontend:
-        image: ${REGISTRY}/qfind-frontend:${IMAGE_TAG}
+        image: ${REGISTRY}/service-user-test-frontend:${IMAGE_TAG}
         restart: always
 
     api:
-        image: ${REGISTRY}/qfind-api:${IMAGE_TAG}
+        image: ${REGISTRY}/service-user-test-api:${IMAGE_TAG}
         restart: always
         depends_on:
             - api-php-fpm
 
     api-php-fpm:
-        image: ${REGISTRY}/qfind-api-php-fpm:${IMAGE_TAG}
+        image: ${REGISTRY}/service-user-test-api-php-fpm:${IMAGE_TAG}
         restart: always
+
+    api-php-cli:
+        image: ${REGISTRY}/service-user-test-api-php-cli:${IMAGE_TAG}
