@@ -1,7 +1,12 @@
-init: docker-down-clear docker-pull docker-build docker-up
+init: docker-down-clear docker-pull docker-build docker-up api-init
 up: docker-up
 down: docker-down
 restart: down up
+
+api-init: api-composer-install
+
+api-composer-install:
+	docker-compose run --rm api-php-cli composer install
 
 docker-up:
 	docker-compose up -d
@@ -67,14 +72,16 @@ rollback:
 
 
 
-#docker tag edcab663d877 qfind/service-user-test_frontend:master-1
-#docker tag bbf18f843b9c qfind/service-user-test_api:master-1
-#docker tag 3db03217fc74 qfind/service-user-test_gateway:master-1
-#docker tag 4d31e6978718 qfind/service-user-test_api-php-fpm:master-1
+# docker tag edcab663d877 qfind/service-user-test_frontend:master-1
+# docker tag bbf18f843b9c qfind/service-user-test_api:master-1
+# docker tag 3db03217fc74 qfind/service-user-test_gateway:master-1
+# docker tag 4d31e6978718 qfind/service-user-test_api-php-fpm:master-1
 
-#docker login
+# docker login
 
-#docker push qfind/service-user-test_frontend:master-1
-#docker push qfind/service-user-test_api:master-1
-#docker push qfind/service-user-test_gateway:master-1
-#docker push qfind/service-user-test_api-php-fpm:master-1
+# docker push qfind/service-user-test_frontend:master-1
+# docker push qfind/service-user-test_api:master-1
+# docker push qfind/service-user-test_gateway:master-1
+# docker push qfind/service-user-test_api-php-fpm:master-1
+
+# docker-compose run --rm api-php-cli composer
